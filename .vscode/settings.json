@@ -1,0 +1,19 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "dist": true,
+    "*.vsix": true
+  },
+  "search.exclude": {
+    "node_modules": true,
+    "dist": true,
+    "*.vsix": true
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "eslint.workingDirectories": ["./"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

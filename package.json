@@ -1,0 +1,339 @@
+{
+  "name": "local-llm",
+  "displayName": "Local LLM",
+  "description": "Integrate local AI models with your development environment",
+  "version": "0.1.0",
+  "publisher": "mjkubba",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "artificial intelligence",
+    "llm",
+    "large language model",
+    "local ai",
+    "privacy",
+    "chat",
+    "completion",
+    "embeddings",
+    "code generation",
+    "openai compatible"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "badges": [
+    {
+      "url": "https://img.shields.io/badge/OpenAI-Compatible-blue",
+      "href": "https://github.com/mjkubba/local-llm",
+      "description": "OpenAI API Compatible"
+    }
+  ],
+  "activationEvents": [
+    "onCommand:localllm.openChat",
+    "onCommand:localllm.listModels",
+    "onCommand:localllm.resetConfiguration",
+    "onCommand:localllm.validateConfiguration",
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "localllm-sidebar",
+          "title": "Local LLM",
+          "icon": "resources/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "localllm-sidebar": [
+        {
+          "type": "webview",
+          "id": "localllm.chatView",
+          "name": "Chat",
+          "contextualTitle": "Local LLM Chat"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "localllm.openChat",
+        "title": "Open Chat",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.sendMessage",
+        "title": "Send Message",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.clearChat",
+        "title": "Clear Chat History",
+        "category": "Local LLM"
+      },
+      {
+        "command": "localllm.listModels",
+        "title": "List Models",
+        "category": "Local LLM",
+        "enablement": "localllm.connected"
+      },
+      {
+        "command": "localllm.selectModel",
+        "title": "Select Model",
+        "category": "Local LLM",
+        "enablement": "localllm.connected"
+      },
+      {
+        "command": "localllm.refreshModels",
+        "title": "Refresh Models",
+        "category": "Local LLM",
+        "enablement": "localllm.connected"
+      },
+      {
+        "command": "localllm.completeText",
+        "title": "Complete Text",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.completeSelection",
+        "title": "Complete Selection",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.generateCode",
+        "title": "Generate Code",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.explainCode",
+        "title": "Explain Code",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.improveCode",
+        "title": "Improve Code",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.generateEmbedding",
+        "title": "Generate Embedding",
+        "category": "Local LLM",
+        "enablement": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.testConnection",
+        "title": "Test Connection",
+        "category": "Local LLM"
+      },
+      {
+        "command": "localllm.quickModelSwitch",
+        "title": "Quick Model Switch",
+        "category": "Local LLM",
+        "enablement": "localllm.connected"
+      },
+      {
+        "command": "localllm.showInfo",
+        "title": "Show Extension Info",
+        "category": "Local LLM"
+      },
+      {
+        "command": "localllm.openSettings",
+        "title": "Open Settings",
+        "category": "Local LLM"
+      },
+      {
+        "command": "localllm.showHelp",
+        "title": "Show Help",
+        "category": "Local LLM"
+      },
+      {
+        "command": "localllm.resetConfiguration",
+        "title": "Reset Configuration to Defaults",
+        "category": "Local LLM"
+      },
+      {
+        "command": "localllm.validateConfiguration",
+        "title": "Validate Configuration",
+        "category": "Local LLM"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "localllm.quickModelSwitch",
+        "key": "ctrl+shift+l m",
+        "when": "localllm.connected"
+      },
+      {
+        "command": "localllm.openChat",
+        "key": "ctrl+shift+l c",
+        "when": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.completeText",
+        "key": "ctrl+shift+l t",
+        "when": "editorTextFocus && localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.generateCode",
+        "key": "ctrl+shift+l g",
+        "when": "localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.explainCode",
+        "key": "ctrl+shift+l e",
+        "when": "editorHasSelection && localllm.connected && localllm.hasActiveModel"
+      },
+      {
+        "command": "localllm.completeSelection",
+        "key": "ctrl+shift+l s",
+        "when": "editorTextFocus && localllm.connected && localllm.hasActiveModel"
+      }
+    ],
+    "configuration": {
+      "title": "Local LLM",
+      "properties": {
+        "localllm.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:1234",
+          "description": "LM Studio server URL",
+          "pattern": "^https?://.+",
+          "patternErrorMessage": "Must be a valid HTTP or HTTPS URL",
+          "order": 1
+        },
+        "localllm.defaultModel": {
+          "type": "string",
+          "default": "",
+          "description": "Default model ID to use for AI operations",
+          "order": 2
+        },
+        "localllm.chatSettings.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Chat completion temperature (0-2). Higher values make output more random",
+          "order": 10
+        },
+        "localllm.chatSettings.maxTokens": {
+          "type": "integer",
+          "default": 1000,
+          "minimum": 1,
+          "maximum": 100000,
+          "description": "Maximum tokens for chat completions",
+          "order": 11
+        },
+        "localllm.chatSettings.systemPrompt": {
+          "type": "string",
+          "default": "You are a helpful AI assistant for software development.",
+          "description": "Default system prompt for chat conversations",
+          "editPresentation": "multilineText",
+          "order": 12
+        },
+        "localllm.completionSettings.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Text completion temperature (0-2). Higher values make output more random",
+          "order": 20
+        },
+        "localllm.completionSettings.maxTokens": {
+          "type": "integer",
+          "default": 500,
+          "minimum": 1,
+          "maximum": 100000,
+          "description": "Maximum tokens for text completions",
+          "order": 21
+        },
+        "localllm.completionSettings.stopSequences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["\n\n", "```"],
+          "description": "Stop sequences for text completions",
+          "order": 22
+        },
+        "localllm.connectionSettings.timeout": {
+          "type": "integer",
+          "default": 30000,
+          "minimum": 1000,
+          "maximum": 300000,
+          "description": "Request timeout in milliseconds",
+          "order": 30
+        },
+        "localllm.connectionSettings.retryAttempts": {
+          "type": "integer",
+          "default": 3,
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Number of retry attempts for failed requests",
+          "order": 31
+        },
+        "localllm.connectionSettings.healthCheckInterval": {
+          "type": "integer",
+          "default": 60000,
+          "minimum": 10000,
+          "maximum": 600000,
+          "description": "Health check interval in milliseconds",
+          "order": 32
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "package-extension": "vsce package",
+    "publish": "vsce publish",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext js",
+    "test": "node ./src/test/runTest.js",
+    "clean": "rimraf dist *.vsix",
+    "prepare-release": "node scripts/prepare-release.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@types/mocha": "^10.0.1",
+    "eslint": "^8.28.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^2.22.0",
+    "mocha": "^10.2.0",
+    "glob": "^8.1.0",
+    "rimraf": "^5.0.5"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjkubba/local-llm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mjkubba/local-llm/issues"
+  },
+  "homepage": "https://github.com/mjkubba/local-llm#readme",
+  "license": "MIT",
+  "qna": "marketplace"
+}
