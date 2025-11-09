@@ -7,10 +7,12 @@ Connect local AI models to your VS Code development environment using OpenAI-com
 
 ## Screenshots
 
-![Chat Interface - Top](docs/screen1.png)
+![Chat Interface - Top](https://github.com/mjkubba/local-llm/raw/main/docs/screen1.png)
+
 *Chat interface with model selection and controls*
 
-![Chat Interface - Bottom](docs/screen2.png)
+![Chat Interface - Bottom](https://github.com/mjkubba/local-llm/raw/main/docs/screen2.png)
+
 *Message input and status bar*
 
 ## ✨ Features
