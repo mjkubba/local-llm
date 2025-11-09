@@ -2,7 +2,7 @@
 
 Connect local AI models to your VS Code development environment using OpenAI-compatible APIs.
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.1.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Screenshots
@@ -90,7 +90,9 @@ Access settings via `File > Preferences > Settings` and search for "Local LLM":
 ### Connection Settings
 
 - **Server URL** - Your local AI server address (default: `http://localhost:1234`)
-- **Timeout** - Request timeout in milliseconds (default: 30000)
+- **Timeout** - Request timeout in milliseconds (default: 120000, max: 300000)
+  - Default is 2 minutes, suitable for most models
+  - Increase for very large models or slow systems
 - **Retry Attempts** - Number of retry attempts (default: 3)
 
 ### Chat Settings
@@ -136,6 +138,16 @@ Access settings via `File > Preferences > Settings` and search for "Local LLM":
 2. Reduce max tokens in settings
 3. Close other applications to free memory
 4. Adjust temperature for faster responses
+
+### Timeout Errors
+
+**Problem:** "The operation was aborted due to timeout" during streaming
+
+**Solutions:**
+1. Default timeout is 120000ms (2 minutes)
+2. Increase in settings: `Local LLM: Connection Settings: Timeout`
+3. Try 180000ms (3 minutes) or 300000ms (5 minutes) for very large models
+4. Maximum allowed is 300000ms (5 minutes)
 
 ## 🤝 Contributing
 

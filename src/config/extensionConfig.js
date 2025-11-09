@@ -194,7 +194,7 @@ class ConnectionConfig {
      */
     constructor(config = {}) {
         // Use fallback values if DEFAULTS is undefined (bundling issue)
-        const defaultTimeout = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.TIMEOUT : 30000;
+        const defaultTimeout = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.TIMEOUT : 120000;
         const defaultRetryAttempts = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.RETRY_ATTEMPTS : 3;
         const defaultHealthCheckInterval = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.HEALTH_CHECK_INTERVAL : 60000;
         
@@ -461,7 +461,7 @@ class ExtensionConfig {
      */
     sanitizeConnectionSettings(settings) {
         // Use fallback values if DEFAULTS is undefined (bundling issue)
-        const defaultTimeout = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.TIMEOUT : 30000;
+        const defaultTimeout = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.TIMEOUT : 120000;
         const defaultRetryAttempts = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.RETRY_ATTEMPTS : 3;
         const defaultHealthCheckInterval = (DEFAULTS && DEFAULTS.CONNECTION) ? DEFAULTS.CONNECTION.HEALTH_CHECK_INTERVAL : 60000;
         

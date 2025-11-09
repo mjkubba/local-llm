@@ -2,7 +2,7 @@
   "name": "local-llm",
   "displayName": "Local LLM",
   "description": "Integrate local AI models with your development environment",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "mjkubba",
   "icon": "icon.png",
   "engines": {
@@ -272,10 +272,10 @@
         },
         "localllm.connectionSettings.timeout": {
           "type": "integer",
-          "default": 30000,
+          "default": 120000,
           "minimum": 1000,
           "maximum": 300000,
-          "description": "Request timeout in milliseconds",
+          "description": "Request timeout in milliseconds (default: 2 minutes)",
           "order": 30
         },
         "localllm.connectionSettings.retryAttempts": {

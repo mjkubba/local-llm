@@ -215,10 +215,10 @@ class ConfigurationManager extends EventEmitter {
                 },
                 'lmstudio.connectionSettings.timeout': {
                     type: 'integer',
-                    default: 30000,
+                    default: 120000,
                     minimum: 1000,
                     maximum: 300000,
-                    description: 'Request timeout in milliseconds'
+                    description: 'Request timeout in milliseconds (default: 2 minutes)'
                 },
                 'lmstudio.connectionSettings.retryAttempts': {
                     type: 'integer',
@@ -320,7 +320,7 @@ class ConfigurationManager extends EventEmitter {
                     stopSequences: completionSettings.stopSequences ?? ['\n\n', '```']
                 },
                 connectionSettings: {
-                    timeout: connectionSettings.timeout ?? 30000,
+                    timeout: connectionSettings.timeout ?? 120000,
                     retryAttempts: connectionSettings.retryAttempts ?? 3,
                     healthCheckInterval: connectionSettings.healthCheckInterval ?? 60000
                 }

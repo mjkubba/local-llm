@@ -116,7 +116,7 @@ const DEFAULTS = {
     
     /** Default connection settings */
     CONNECTION: {
-        TIMEOUT: 30000, // 30 seconds
+        TIMEOUT: 120000, // 2 minutes
         RETRY_ATTEMPTS: 3,
         HEALTH_CHECK_INTERVAL: 60000 // 1 minute
     }
