@@ -318,11 +318,19 @@ class ChatPanel {
      * Handle clearing chat history
      */
     async handleClearChat() {
-        this.chatHistory = [];
-        await this.saveChatHistory();
-        this.sendToWebview({
-            type: 'chatCleared'
-        });
+        const choice = await vscode.window.showWarningMessage(
+            'Clear chat history? This cannot be undone.',
+            { modal: true },
+            'Clear'
+        );
+        
+        if (choice === 'Clear') {
+            this.chatHistory = [];
+            await this.saveChatHistory();
+            this.sendToWebview({
+                type: 'chatCleared'
+            });
+        }
     }
 
     /**
@@ -607,8 +615,8 @@ class ChatPanel {
         <div class="chat-container">
             <div id="chat-messages" class="chat-messages">
                 <div class="welcome-message">
-                    <h3>Welcome to Local LLM server Chat</h3>
-                    <p>Select a model and start chatting with your AI!</p>
+                    <h3>Welcome to Local LLM Chat</h3>
+                    <p>Select a model and start chatting!</p>
                 </div>
             </div>
         </div>

@@ -75,13 +75,8 @@
         // New session (optional - only in panel view)
         if (elements.newSession) {
             elements.newSession.addEventListener('click', () => {
-                if (state.chatHistory.length > 0) {
-                    if (confirm('Start a new chat session? Current conversation will be saved.')) {
-                        vscode.postMessage({ type: 'newSession' });
-                    }
-                } else {
-                    vscode.postMessage({ type: 'newSession' });
-                }
+                // Backend will handle confirmation if needed
+                vscode.postMessage({ type: 'newSession' });
             });
         }
 
@@ -91,17 +86,22 @@
                 if (state.chatHistory.length > 0) {
                     vscode.postMessage({ type: 'exportChat' });
                 } else {
-                    alert('No chat history to export');
+                    updateStatus('No chat history to export');
                 }
             });
         }
 
         // Clear chat
-        elements.clearChat.addEventListener('click', () => {
-            if (confirm('Clear chat history? This cannot be undone.')) {
+        if (elements.clearChat) {
+            elements.clearChat.addEventListener('click', () => {
+                if (state.chatHistory.length === 0) {
+                    updateStatus('No chat history to clear');
+                    return;
+                }
+                // Send clear request - backend will handle confirmation
                 vscode.postMessage({ type: 'clearChat' });
-            }
-        });
+            });
+        }
 
         // Settings toggle
         elements.settingsToggle.addEventListener('click', () => {
@@ -258,8 +258,8 @@
         if (state.chatHistory.length === 0) {
             container.innerHTML = `
                 <div class="welcome-message">
-                    <h3>Welcome to LM Studio Chat</h3>
-                    <p>Select a model and start chatting with your local AI!</p>
+                    <h3>Welcome to Local LLM Chat</h3>
+                    <p>Select a model and start chatting!</p>
                 </div>
             `;
             return;
@@ -410,8 +410,10 @@
 
     // Clear chat display
     function clearChatDisplay() {
+        console.log('Clearing chat display');
         state.chatHistory = [];
         updateChatDisplay();
+        updateStatus('Chat cleared');
         updateStatus('Chat cleared');
     }
 

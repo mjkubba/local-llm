@@ -207,9 +207,17 @@ class ChatViewProvider {
     }
 
     async handleClearChat() {
-        this.chatHistory = [];
-        await this.saveChatHistory();
-        this.sendToWebview({ type: 'chatCleared' });
+        const choice = await vscode.window.showWarningMessage(
+            'Clear chat history? This cannot be undone.',
+            { modal: true },
+            'Clear'
+        );
+        
+        if (choice === 'Clear') {
+            this.chatHistory = [];
+            await this.saveChatHistory();
+            this.sendToWebview({ type: 'chatCleared' });
+        }
     }
 
     async handleSelectModel(modelId) {

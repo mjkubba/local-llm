@@ -5,6 +5,14 @@ Connect local AI models to your VS Code development environment using OpenAI-com
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+## Screenshots
+
+![Chat Interface - Top](docs/screen1.png)
+*Chat interface with model selection and controls*
+
+![Chat Interface - Bottom](docs/screen2.png)
+*Message input and status bar*
+
 ## ✨ Features
 
 - 🤖 **Sidebar Chat** - Always-visible AI chat in the sidebar
